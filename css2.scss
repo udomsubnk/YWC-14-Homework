@@ -1,0 +1,126 @@
+body {
+	margin:0;
+	background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%) no-repeat cover;
+}
+#contrainer {
+	width: 100vw;
+	background-color: #81D4DC;
+	height: 100vh;
+}
+#div-bin{
+	position: absolute;
+	bottom: 0;
+	height: 100px;
+	width: 100px;
+	display: none;
+}
+.coin{
+	position: absolute;
+}
+#left{
+	width: 50vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#right{
+	width: 50vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 50vw;
+}
+svg{
+	position: absolute;
+}
+.ywc{
+	width: 100%;
+	font-size: 3em;
+	font-weight: bold;
+	position: absolute;
+	text-align: center;
+}
+#ywc{
+	background: red;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	align-self: center;
+	align-items: center;
+	justify-content: center;
+}
+.bin{
+	stroke:rgb(0,0,0);
+	stroke-width:2;
+}
+@keyframes cong{
+	0%{
+		font-size: 3em;
+	}
+	10%{
+		font-size: 6em;
+	}
+	20%{background:white;-webkit-background-clip: text;}
+	30%{background: red;-webkit-background-clip: text;}
+	40%{background:white;-webkit-background-clip: text;}
+	50%{background: orange;-webkit-background-clip: text;}
+	60%{background:white;-webkit-background-clip: text;}
+	70%{background: yellow;-webkit-background-clip: text;}
+	80%{background:white;-webkit-background-clip: text;}
+	90%{background: green;-webkit-background-clip: text;}
+
+
+	100%{
+		font-size: 6em;
+	}
+} 
+#left{
+	z-index: 99;
+}
+#right{
+	z-index: 99;
+}
+.balloon{
+	position: absolute;
+	z-index: 100;
+	display: none;
+}
+#beforeYWC{
+	display: flex;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	align-self: center;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column;
+}
+#start{
+	z-index: 100;
+	cursor: pointer;
+}
+@keyframes balloon{
+	0%{}
+	100%{transform: translateY(-1000px);}
+}
+#b1{
+	bottom: -00px;
+}
+#b2{
+	bottom: -100px;
+}
+#b3{
+	bottom: -50px;
+}
+#b4{
+	bottom: -100px;
+}
+#b5{
+	bottom: -150px;
+}
+#b6{
+	bottom: -00px;
+}

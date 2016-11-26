@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Developer Homework | Young Webmaster Camp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="css.css">
+    <script type="text/javascript" src="js.js"></script>
+</head>
+<body onkeydown="keydown()"> 
+    <div id="contrainer">
+        <div id="div-bin">
+            <svg width="100%" height="100%">
+              <rect width="100%" height="100%" style="fill:green;" />
+            </svg>
+        </div>
+        <div id="left" onmousedown="left()"></div>
+        <div id="right" onmousedown="right()"></div>
+    </div>
+    <script id="coin" type="javascript/worker">
+ 
+    </script>
+    <script>
+        score = 0;
+        speed = 2;
+        start();
+        
+
+
+
+
+        function start(){
+            var number=0;
+
+            this.intervalId = window.setInterval(function() {
+                new Coin(number++,speed);
+                if(score >= 100){
+                    window.clearInterval(this.intervalId);
+                }
+                else if(score<25)
+                    speed = 2
+                else if(score<50)
+                    speed = 3
+                else if(score<80)
+                    speed = 4
+                else if(score<100)
+                    speed = 5
+            }.bind(this), 1000-(speed*2));
+        }
+        // function check(){
+        //  var bin = document.getElementById('div-bin');
+        //  var allCoin = document.getElementsByClassName('coin');
+        //  for(i=0;i<allCoin.length;i++){
+        //      if(allCoin[i].offsetTop>window.innerHeight-bin.offsetHeight-10){
+        //          id = allCoin[i].id;
+        //          contrainer = document.getElementById("contrainer")
+        //          thisCoin = document.getElementById(id);
+        //          contrainer.removeChild(thisCoin);
+        //      }
+        //  }
+        //  setTimeout("check()", 500);
+        // }
+        function Coin(number,speed){
+            var ran = Math.floor(Math.random() * 3) + 1;
+            if(ran==1){
+                coin='Y';
+                var color = "#D22E36";
+                var x = 28,y = 72;
+            }
+            else if(ran==2){
+                coin='W';
+                var color = "#2CAB3B";
+                var x = 23,y = 73;
+            }
+            else{
+                coin='C';
+                var color = "#416AED";
+                var x = 30,y = 70;
+            }
+
+            var id = coin+number+"";
+
+            document.getElementById('contrainer').innerHTML += '<div id="'+id+'" class="coin"><svg width="100"  height="100">'+
+            '<circle cx="50" cy="50" r="48" stroke="'+color+'" fill="'+color+'" />'+
+            '<text fill="#ffffff" font-size="60" font- x="'+x+'" y="'+y+'">'+coin+'</text>'+
+            '</svg></div>';
+            
+            var thisCoin = document.getElementById(id);
+
+            var left = Math.floor(Math.random()*window.innerWidth);
+            if(left>window.innerWidth-150)
+                left-=150;
+            thisCoin.style.left = left+"px";
+            thisCoin.style.top = -thisCoin.offsetHeight+10+"px"
+
+            this.intervalId = window.setInterval(function() {
+                var thisCoin = document.getElementById(id);
+                thisCoin.style.top = thisCoin.offsetTop+speed+"px"
+
+                var bin = document.getElementById("div-bin")
+
+                function thisClear(inid) {
+                    window.clearInterval(inid);                 
+                }
+                if(thisCoin.offsetTop>window.innerHeight-bin.offsetHeight){
+                    if(thisCoin.offsetLeft>=bin.offsetLeft-bin.offsetWidth && thisCoin.offsetLeft<=bin.offsetLeft+bin.offsetWidth){
+                        score+=3;
+                    }
+                    else score-=2;
+                    contrainer = document.getElementById("contrainer")
+                    thisCoin = document.getElementById(id);
+                    contrainer.removeChild(thisCoin);
+                    thisClear(this.intervalId);
+                    console.log(score)
+                }
+            }.bind(this), 10);
+
+
+        }
+        function right(){
+            keydown(39);
+        }
+        function left(){
+            keydown(37);
+        }
+        function keydown(e){
+            var bin = document.getElementById('div-bin');
+            var char = event.which || event.keyCode;
+            var movement = 50;
+            if(char==37 || e==37){
+                if(bin.offsetLeft-movement<0)return;
+                var move = -movement;
+            }
+            else if(char==39 || e==39){
+                if(bin.offsetLeft+bin.offsetWidth+movement>window.innerWidth)return;
+                var move = movement;
+            }
+
+            bin.style.left = (bin.offsetLeft + move) +'px';
+        }
+        
+        
+    </script>
+</body>
+</html>

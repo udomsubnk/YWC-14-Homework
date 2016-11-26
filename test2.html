@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body id="body">
+
+
+
+
+<script>
+var tickRate = 30,
+    keyDown = [],
+    keyMap = {
+      'left':  37,
+      'up':    38,
+      'right': 39,
+      'down':  40
+    };
+var left=false;
+var right = false;
+document.getElementById("body").addEventListener("keydown", function(e){ if(e.which == 37){left=true} else if(e.which==39){right = true}});
+document.getElementById("body").addEventListener("keyup",function(e){if(e.which == 37){left=false} else if(e.which==39){right = false}});
+
+var tick = function() {
+if(left)
+	console.log('left')
+else if(right)
+	console.log('right')
+
+  // other code
+
+  setTimeout(tick,tickRate);
+};
+
+tick();
+</script>
+
+</body>
+</html>
+
